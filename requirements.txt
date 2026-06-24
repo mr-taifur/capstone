@@ -1,0 +1,8 @@
+google-adk>=2.3.0
+mcp>=1.28.0
+streamlit
+reportlab
+python-dotenv
+pytest
+pillow
+requests

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "google-adk-docs": {
+      "command": "npx",
+      "args": ["-y", "@nhtio/adk@latest"]
+    }
+  }
+}
