@@ -244,6 +244,10 @@ pip install -r requirements.txt
 <img width="1411" height="834" alt="Screenshot 2026-07-02 235104" src="https://github.com/user-attachments/assets/c17cf320-b5ea-4386-a88c-f6e00bce4d18" />
 <img width="1443" height="789" alt="Screenshot 2026-07-02 235203" src="https://github.com/user-attachments/assets/893a91e1-eaec-4271-876e-cc4f194d87ba" />
 
+# Demo Video
+
+https://github.com/user-attachments/assets/66417c20-0813-4823-bba4-5d84b706b2cf
+
 
 # Author
 
