@@ -151,6 +151,7 @@ def generate_report_pdf(report_data: dict, output_path: str = None) -> bytes:
     def format_text_block(text, story):
         if not text:
             return
+        import re
         lines = text.split("\n")
         for line in lines:
             line_str = line.strip()
@@ -167,10 +168,10 @@ def generate_report_pdf(report_data: dict, output_path: str = None) -> bytes:
             # Bullet point
             elif line_str.startswith("- ") or line_str.startswith("* ") or (len(line_str) > 2 and line_str[0].isdigit() and line_str[1] == "."):
                 bullet_text = line_str.lstrip("- *").strip()
-                bullet_text = bullet_text.replace("**", "<b>", 1).replace("**", "</b>", 1)
+                bullet_text = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', bullet_text)
                 story.append(Paragraph(f"&bull; {bullet_text}", bullet_style))
             else:
-                body_text = line_str.replace("**", "<b>").replace("**", "</b>")
+                body_text = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', line_str)
                 story.append(Paragraph(body_text, body_style))
                 
     # Section 1: Symptom Profile

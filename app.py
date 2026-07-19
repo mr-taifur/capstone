@@ -1,6 +1,7 @@
 import os
 import asyncio
 import streamlit as st
+import re
 import datetime
 from dotenv import load_dotenv
 
@@ -249,7 +250,7 @@ with tab1:
         st.markdown('</div>', unsafe_allow_html=True)
         
         if uploaded_image:
-            st.image(uploaded_image, caption="Uploaded Leaf Specimen", use_container_width=True)
+            st.image(uploaded_image, caption="Uploaded Leaf Specimen", width="stretch")
 
     # Execution Phase
     if btn_run:
@@ -318,9 +319,9 @@ with tab1:
                             st.markdown("### 📋 Final Health & Treatment Dossier")
                             
                             # Compute HTML presentation strings to avoid backslashes inside f-string expressions in Python < 3.12
-                            det_html = result['detector_output'].replace("**", "<b>").replace("\n", "<br/>")
-                            wea_html = result['weather_output'].replace("**", "<b>").replace("\n", "<br/>")
-                            diag_html = result['diagnosis_output'].replace("**", "<b>").replace("\n", "<br/>")
+                            det_html = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', result['detector_output']).replace("\n", "<br/>")
+                            wea_html = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', result['weather_output']).replace("\n", "<br/>")
+                            diag_html = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', result['diagnosis_output']).replace("\n", "<br/>")
 
                             col_res1, col_res2 = st.columns([1, 1])
 
@@ -368,7 +369,7 @@ with tab1:
                             t_cols = st.columns(len(treatment_lines))
                             for idx, t_section in enumerate(treatment_lines):
                                 if t_section.strip():
-                                    t_sec_html = t_section.replace("**", "<b>").replace("\n", "<br/>")
+                                    t_sec_html = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', t_section).replace("\n", "<br/>")
                                     with t_cols[min(idx, len(t_cols)-1)]:
                                         st.markdown(f"""
                                         <div class="card" style="height: 100%;">
